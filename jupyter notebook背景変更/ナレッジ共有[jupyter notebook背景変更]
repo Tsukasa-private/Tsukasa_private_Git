@@ -1,0 +1,29 @@
+#テーマ
+jupyter notebookを使って作業をすることがあるが、背景色の変更ができると知ってやりたかったが、
+数分でできそうにもなかった（cssなど明るくない場合時間が掛かるかも知れない。というか私は掛かりました）ので、忘備録のためにも残します。
+
+#結果
+！！ここにキャプチャ張り付ける
+
+##手順1`.jupyter`ディレクトリに移動する
+
+  `~~User/YourName/.jupyter`
+  `~~User/YourName`ここまでは使っている環境によって違うので読み替えてくださいませ。
+
+##手順2.customフォルダを作成する（なければ）
+  `~~User/YourName/.jupyter/custom`　にする。
+
+##手順3.custom.cssファイルを作成する。
+  `~~User/YourName/.jupyter/custom/custom.css`　とする。
+  後で中身を書きますので、空で作成で大丈夫です。
+
+##手順4.custom.cssに記述する中身をとってくる。
+  ググって探せばいろいろと見つかると思います。
+  例えば上の"結果"の例はこちらから頂いた、onedark.cssのものです。
+
+  https://github.com/dunovank/jupyter-themes
+  クローン出来たら、
+  "~~/jupyterthemes/styles/compiled/~~.css"
+  ファイルを手順3.で作成したcssファイルに丸っとコピペして保存すればオッケーです。
+
+##手順5.jupyter notebookを再起動する。
