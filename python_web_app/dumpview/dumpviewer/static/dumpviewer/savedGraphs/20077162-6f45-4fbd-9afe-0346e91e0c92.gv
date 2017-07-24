@@ -1,0 +1,11 @@
+﻿strict digraph "" {
+"温度/℃ (id " [creator=6];
+"定性的な規則-不規則変態整合平衡状態図 (id " [creator=6, type=square];
+"成膜速度/μm・min^-1^ (id " [creator=6, end=True];
+"CVDによるSi膜生成反応のアレニウス・プロット (id " [creator=6, type=square];
+"Zn含有率 [mol％] (id " [creator=6, start=True];
+"温度/℃ (id : 6189)" -> "CVDによるSi膜生成反応のアレニウス・プロット (id : 20)"  [creator=6];
+"定性的な規則-不規則変態整合平衡状態図 (id : 101)" -> "温度/℃ (id : 6189)"  [creator=6];
+"CVDによるSi膜生成反応のアレニウス・プロット (id : 20)" -> "成膜速度/μm・min^-1^ (id : 6188)"  [creator=6];
+"Zn含有率 [mol％] (id : 6508)" -> "定性的な規則-不規則変態整合平衡状態図 (id : 101)"  [creator=6];
+}

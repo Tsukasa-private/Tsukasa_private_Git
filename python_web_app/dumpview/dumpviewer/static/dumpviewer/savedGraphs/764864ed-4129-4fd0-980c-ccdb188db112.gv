@@ -1,0 +1,7 @@
+﻿strict digraph "" {
+"アモルファスFeと液体Feの構造因子S(Q) (id " [creator=6, type=square];
+"S(Q) (id " [creator=6];
+"Q (id " [creator=6];
+"アモルファスFeと液体Feの構造因子S(Q) (id : 50)" -> "S(Q) (id : 6302)"  [creator=6];
+"Q (id : 6303)" -> "アモルファスFeと液体Feの構造因子S(Q) (id : 50)"  [creator=6];
+}

@@ -1,0 +1,7 @@
+﻿strict digraph "" {
+"自由エネルギー (id " [creator=6];
+"固溶体の自由エネルギーの組成依存性 (id " [creator=6, type=square];
+"％B (id " [creator=6];
+"固溶体の自由エネルギーの組成依存性 (id : 340)" -> "自由エネルギー (id : 6499)"  [creator=6];
+"％B (id : 6990)" -> "固溶体の自由エネルギーの組成依存性 (id : 340)"  [creator=6];
+}

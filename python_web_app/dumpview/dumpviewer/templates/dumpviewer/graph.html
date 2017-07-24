@@ -1,0 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'dumpviewer/graph.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dumpviewer/bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dumpviewer/bootstrap-datetimepicker.min.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'dumpviewer/favicon.ico' %}"/>
+  </head>
+  <body>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div id="sidebar">
+      <input type="radio" name="search" value="creatorSearch" checked> Keyword
+      <input type="radio" name="search" value="pathSearch"> Path
+      <input type="radio" name="search" value="viewSaved"> Saved
+      <div id="creatorSearch">
+        Specified date: (YYYY/MM/DD hh:mm:ss)
+        <form action="{% url 'dumpviewer:search' %}" method="post" id="creatorSearchForm">
+          {% csrf_token %}
+          <input type="hidden" name="dateWasSelected" value="">
+          <div class='input-group date' id='creatorDateTimePicker'>
+            <input type='text' class="form-control" name="selectedDate" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+          <br>
+          Keywords
+          <br>
+          <select name="andOrField">
+            <option value="and">AND</option>
+            <option value="or" selected>OR</option>
+          </select>
+          <br>
+          <input type="text" id="creatorText" name="keywords" placeholder="Fe"></input>
+          <button id="creatorButton" type="button">+</button>
+          <br>
+          <select id="creatorSelect"></select>
+          <br>
+          <div id="creatorDisplayDiv"></div>
+          <br>
+          Creator IDs
+          <br>
+          <select id="creatorIDSelect" name="creator_ids">
+            <option value=""></option>
+            {% for id in creatorIds %}
+            <option value="{{ id }}">{{ id }}</option>
+            {% endfor %}
+          </select>
+          <button id="creatorIDButton" type="button">+</button>
+          <br>
+          <div id="creatorIDDisplayDiv"></div>
+          <br>
+          <input type="checkbox" name="split">Split By Creator Id<br>
+          <br>
+          Dictionary Names
+          <br>
+          <select id="creatorDictionarySelect" name="dicNames">
+            <option value=""></option>
+            {% for dicName in dicNames %}
+            <option value="{{ dicName }}">{{ dicName }}</option>
+            {% endfor %}
+          </select>
+          <button id="creatorDictionaryButton" type="button">+</button>
+          <br>
+          <div id="creatorDictionaryDisplayDiv"></div>
+          <br>
+          N step select
+          <br>
+          <input type="number" name="NstepSelect" placeholder="5" min="0" value="1" required></input>
+          <br>
+          <input type="submit" value="Submit" id="creatorSearchSubmit">
+        </form>
+      </div>
+      <div id="pathSearch">
+        Specified date: (YYYY/MM/DD hh:mm:ss)
+        <form action="{% url 'dumpviewer:search' %}" method="post" id="pathSearchForm">
+          {% csrf_token %}
+          <input type="hidden" name="dateWasSelected" value="">
+          <div class='input-group date' id='pathDateTimePicker'>
+            <input type='text' class="form-control" name="selectedDate" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+          <br>
+          Path<br>
+          <select id="pathTypeSelect">
+            <option value="start">開始</option>
+            <option value="middle">中間</option>
+            <option value="end">終了</option>
+          </select>
+          <input id="pathText" type="text" placeholder="温度"></input>
+          <button id="pathButton" type="button">+</button><br>
+          <select id="pathSelect"></select><br>
+          <div id="pathDisplayDiv"></div><br>
+          <input type="checkbox" name="longPathsFirst"></input> Long Paths First<br><br>
+          Max Depth<span class="singlePath"> Start To Middle</span><br>
+          <input type="number" name="maxDepth" placeholder="5" min="1" required></input><br><br>
+          <div class="singlePath">
+            Max Depth Middle To End<br>
+            <input type="number" name="maxDepthEnd" placeholder="5" min="1"></input><br><br>
+          </div>
+          Max Count<span class="singlePath"> Start To Middle</span><br>
+          <input type="number" name="maxCount" placeholder="2" min="1" required></input><br>
+          <div class="singlePath">
+            <br>
+            Max Count Middle To End<br>
+            <input type="number" name="maxCountEnd" placeholder="2" min="1"></input><br>
+          </div>
+          <br>
+          Creator IDs
+          <br>
+          <select id="pathIDSelect" name="creator_ids">
+            <option value=""></option>
+            {% for id in creatorIds %}
+            <option value="{{ id }}">{{ id }}</option>
+            {% endfor %}
+          </select>
+          <button id="pathIDButton" type="button">+</button>
+          <br>
+          <div id="pathIDDisplayDiv"></div>
+          <br>
+          <input type="checkbox" name="split">Split By Creator Id<br>
+          <br>
+          Dictionary Names
+          <br>
+          <select id="pathDictionarySelect" name="dicNames">
+            <option value=""></option>
+            {% for dicName in dicNames %}
+            <option value="{{ dicName }}">{{ dicName }}</option>
+            {% endfor %}
+          </select>
+          <button id="pathDictionaryButton" type="button">+</button>
+          <br>
+          <div id="pathDictionaryDisplayDiv"></div>
+          <br>
+          <input type="submit" value="Submit" id="pathSearchSubmit">
+        </form>
+      </div>
+      <div id="viewSaved">
+        <form action="{% url 'dumpviewer:saved' %}" method="post">
+          {% csrf_token %}
+          Saved Graphs
+          <br>
+          <select id="savedGraphsField" name="viewSavedGraphs">
+            <option value=""></option>
+            {% for graph in allSavedGraphs %}
+            <option value="{{ graph.identifier }}">{{ graph.displayString }}</option>
+            {% endfor %}
+          </select>
+          <button id="savedGraphsButton" type="button">+</button>
+          <br>
+          <div id="savedGraphsDisplayDiv"></div>
+          <input type="submit" value="View">
+        </form>
+        <br>
+        <form action="{% url 'dumpviewer:delete' %}" method="post">
+          {% csrf_token %}
+          Delete
+          <br>
+          <select id="deleteGraphsField" name="deleteSavedGraphs">
+            <option value=""></option>
+            {% for graph in allSavedGraphs %}
+            <option value="{{ graph.identifier }}">{{ graph.displayString }}</option>
+            {% endfor %}
+          </select>
+          <button id="deleteGraphsButton" type="button">+</button>
+          <br>
+          <div id="deleteGraphsDisplayDiv"></div>
+          <input type="submit" value="Delete">
+        </form>
+      </div>
+      {% if not saved %}
+      <br>
+      <button id="saveButton">Save Current Graph</button>
+      <br>
+      {% endif %}
+      {% for graph in graphs %}
+      <br>
+      ID {% for creatorId in graph.creatorIds %}{{creatorId}} {% endfor %}
+      {% if saved %}
+      <a href="{% static 'dumpviewer/savedGraphs/'%}{{graph.fileName}}.csv" download>CSV</a>
+      <a href="{% static 'dumpviewer/savedGraphs/'%}{{graph.fileName}}.json" download>JSON</a>
+      <a href="{% static 'dumpviewer/savedGraphs/'%}{{graph.fileName}}.gv" download>DOT</a>
+      {% else %}
+      <a href="{% static 'dumpviewer/temporaryGraphs/'%}{{graph.fileName}}.csv" download>CSV</a>
+      <a href="{% static 'dumpviewer/temporaryGraphs/'%}{{graph.fileName}}.json" download>JSON</a>
+      <a href="{% static 'dumpviewer/temporaryGraphs/'%}{{graph.fileName}}.gv" download>DOT</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div id="graph"></div>
+    <script src="{% static 'dumpviewer/d3.v3.min.js' %}"></script>
+    <script type="text/javascript">
+      var GLOBALS = {
+        {% if saved %}
+        networkdata: "{% static 'dumpviewer/savedGraphs/' %}",
+        {% else %}
+        networkdata: "{% static 'dumpviewer/temporaryGraphs/' %}",
+        {% endif %}
+        dic_id_map: {{ dic_id_map_JSON|safe }},
+        pred_desc_id_map: {{ pred_desc_id_map_JSON|safe }},
+        creatorIDToDicNames: {{ creatorIDToDicNamesJSON|safe }},
+        graphs: {{ graphs|safe }},
+        save_url: "{% url 'dumpviewer:save' %}",
+        graphIdentifiers: {{ graphIdentifiers|safe }},
+        dateTimeSettings: {format: "YYYY/MM/DD HH:mm:ss", extraFormats: ['YYMMDDHHmmss']}
+      }
+    </script>
+
+    <script src="{% static 'dumpviewer/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'dumpviewer/moment.min.js' %}"></script>
+    <script src="{% static 'dumpviewer/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'dumpviewer/bootstrap-datetimepicker.min.js' %}"></script>
+
+    <script src="{% static 'dumpviewer/multiForm.js' %}"></script>
+    <!-- saveFormData loaded before select to restrict select options based on
+         saved search terms on page load -->
+    <script src="{% static 'dumpviewer/saveFormData.js' %}"></script>
+    <script src="{% static 'dumpviewer/graph.js' %}"></script>
+    <script src="{% static 'dumpviewer/select.js' %}"></script>
+    <script src="{% static 'dumpviewer/fetch.js' %}"></script>
+    <script src="{% static 'dumpviewer/sendParameters.js' %}"></script>
+    <script src="{% static 'dumpviewer/validateAndSubmit.js' %}"></script>
+
+    <script type="text/javascript">
+
+      $(function () {
+        
+        $('#creatorDateTimePicker').datetimepicker(GLOBALS.dateTimeSettings);
+        $('#creatorDateTimePicker').on("dp.error", (e)=>{$(e.target).data("DateTimePicker").clear()})
+        
+        $('#pathDateTimePicker').datetimepicker(GLOBALS.dateTimeSettings);
+        $('#pathDateTimePicker').on("dp.error", (e)=>{$(e.target).data("DateTimePicker").clear()})
+
+      });
+    </script>
+  </body>
+</html>

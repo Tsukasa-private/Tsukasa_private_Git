@@ -1,0 +1,15 @@
+﻿strict digraph "" {
+"合金元素濃度 (id " [creator=6, start=True];
+"Fe/Fe<sub>23</sub>C<sub>6</sub>平衡 (id " [creator=6, type=square];
+"温度 (id " [creator=6];
+"Fe-24.9mass%Ni-3.9mass%Mn合金(等温)における母相とマルテンサイト相のギブス自由エネルギー差と温度の関係 (id " [creator=6, type=square];
+"Fe-C系の共析反応に及ぼす合金元素の影響 (id " [creator=6, type=square];
+"炭素濃度 (id " [creator=6];
+"自由エネルギー差 (id " [creator=6, end=True];
+"合金元素濃度 (id : 7236)" -> "Fe-C系の共析反応に及ぼす合金元素の影響 (id : 422)"  [creator=6];
+"Fe/Fe<sub>23</sub>C<sub>6</sub>平衡 (id : 412)" -> "温度 (id : 6255)"  [creator=6];
+"温度 (id : 6255)" -> "Fe-24.9mass%Ni-3.9mass%Mn合金(等温)における母相とマルテンサイト相のギブス自由エネルギー差と温度の関係 (id : 201)"  [creator=6];
+"Fe-24.9mass%Ni-3.9mass%Mn合金(等温)における母相とマルテンサイト相のギブス自由エネルギー差と温度の関係 (id : 201)" -> "自由エネルギー差 (id : 6651)"  [creator=6];
+"Fe-C系の共析反応に及ぼす合金元素の影響 (id : 422)" -> "炭素濃度 (id : 7221)"  [creator=6];
+"炭素濃度 (id : 7221)" -> "Fe/Fe<sub>23</sub>C<sub>6</sub>平衡 (id : 412)"  [creator=6];
+}

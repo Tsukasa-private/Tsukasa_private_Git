@@ -1,0 +1,191 @@
+make it so we don't have to comment out updateGraphs() in views.py to migrate
+fix graph display string order
+
+change top radio buttons to a select input (obsolete with bootstrap?)
+restyle with bootstrap
+  make graph search menu collapsible
+  stop select elements from pushing the rest of the form down when certain options are selected
+
+stop faking the link object when there are no edges
+
+done
+
+  fix safari parameter save (formdata implementation) ✓
+  change name display logic to only care if all words are present if there are multiple name fields ✓
+  change keyword split matching so if all the words are present at least once across all fields it's ok ✓
+
+  delete flag logic fix ✓
+  graph string display change ✓
+  change keyword restriction to and instead of or ✓
+
+  allow restoring of old graphs ✓
+  allow yymmddhhmmss format ✓
+  allow selecting short or long path sort order ✓
+  show d_name and p_name in path search ✓
+  speed up adding options (hide instead of add/remove) ✓
+
+  change selectRestrictData format so it's easy to find things with the same three ids ✓
+  stop caring about dictionary data in non creator-id dictionaries ✓
+
+  find all rows with same ids (from list of ids we care about) ✓
+    get only the one with the largest timestamps ✓
+      the one with the most max time flags ✓
+
+  sort paths by length (short first) ✓
+  display date not specified for old graphs ✓
+
+  add date selected or not to graph string representation ✓
+
+  limit nodes based on modified timestamp ✓
+      store date selected or not with a hidden checkbox ✓
+      set to now if no input ✓
+
+  add selected date to graph string representation ✓
+  store timestamp specified in search with graph data ✓
+  make sure viewing old graphs still works after adding datetime field ✓
+
+  restrict select lists on client side based on selected time ✓
+    search select ✓
+    creator select ✓
+    update select on date change ✓
+
+  change server dName list, pName list etc. to list of records including that info + time, deleted flag, etc. ✓
+    add: P_modified_time, P_deleted, D_modified_time, D_deleted, Dic_creation_time, Dic_deleted ✓
+
+  clear datetime on weird input (bootstrap settings) ✓
+  allow empty submit ✓
+
+  timestamp validation (prevent submit) ✓
+
+  save datetimepicker data ✓
+
+  add datetimepicker ✓
+  add transparent favicon to stop 404s ✓
+
+  read data in from sql on every query ✓
+    optional: only if db has been updated ✓
+
+  add node link to outside at top right on click ✓
+  possibly other node information as well ✓
+  remove on empty space click ✓
+
+  smooth zooming ✓
+  move sql query to separate file ✓
+
+  middle clicking on nodes sends you to their inventory webpage ✓
+
+  path points now sorted by start, middle, and end ✓
+  make drag not deselect nodes ✓
+    have actual event handlers route to the current ones based on 'drag' or not ✓
+  extend mouseover highlight ✓
+  have nodes not in path floating alone for path search ✓
+
+  add timestamp to graph info ✓
+
+  expand highlight, remain until click ✓
+  hide save button better when viewing saved graphs ✓
+
+  minimum on number fields ✓
+  node names hard to see under arrows ✓
+
+  give start, middle, and end nodes different colors ✓
+  random filenames no longer good enough ✓
+  split graphs should be saved as different graph objects ✓
+
+  save whole json file in the database ✓
+
+  graph details appearing on normal searches, empty ✓
+  search without keyword currently fails ✓
+
+  add details display in top right for each graph ✓
+    add restore parameters feature ✓
+  allow viewing multiple saved graphs at once ✓
+  allow graph deletion ✓
+
+  possible for view graphs field to have deleted graph ids saved in it ✓
+
+  things not present in pNames list from init are showing up in keyword search select options ✓
+
+  add middle points to path search ✓
+  make path search a multifield ✓
+    make sure path multifield form data gets saved ✓
+    make name bit display next to main bit for multifield ✓
+
+  welcome screen ✓
+
+  restrict dictionary field based on selected creator ids ✓
+    need data to bind creator ids to dictionaries ✓
+    emit event on displayDiv change? ✓
+
+  make creator id a multifield ✓
+  make save form data work with new forms ✓
+
+  make these new multiple item forms easy to create ✓
+  change keyword fields to allow adding multiples  ✓
+  add dictionary name field ✓
+  and or search ✓
+
+  select form restriction via textbox contents not applied on page load ✓
+
+  save, load, delete for graphs ✓
+    combine both form data save strings into one ✓
+    post a form data string to have it saved as a model ✓
+    save graph files and allow viewing saved graphs from admin view ✓
+    delete files when db object is deleted ✓
+
+  save current form state on pageload, connect save button to that  ✓
+
+
+  clean up download link html ✓
+  fix download for multiple graphs (also add dot format?) ✓
+    pydotplus module added
+  delete graph files from old searches ✓
+
+  change to digraph (o and i? also which direction?) ✓
+  add arrows to edges ✓
+
+  show different creator ids with different colors ✓
+    currently hard coded for known ids, change to use list of colors ✓
+    put a color key for ids somewhere ✓
+  keep field information after a search ✓
+    save top radio button selection ✓
+
+  show different creator ids in separate graphs ✓
+    fix on-load zoom coordinates for multiple graphs ✓
+    stop 0-node graphs from being displayed ✓
+    add title to show which creator id a graph is for ✓
+  make names only show when zoomed close enough ✓
+
+  download the d3 library instead of using a cdn ✓
+  add select search to keyword ✓
+  make select default to none ✓
+  make all fields required for path search ✓
+  error when no paths exist ✓
+  move forms around ✓
+  change node color ✓
+  make zoom level appropriate to graph size ✓
+
+  autocomplete ✓
+  export graph ✓
+  collapsing nodes (not applicable for keyword graph, no root node)
+  search on P_name for keywords ✓
+  allow limiting graph by multiple creator ids ✓
+
+  4 6 adjust the styling for displaying the network
+  グラフ表示を改善する
+    change color of start and end nodes ✓
+
+  2 4 specify which dump to use via form
+  ユーザー選択機能を追加する
+
+  2 4 put search form on django page, radio buttons for selecting dump
+  グラフ表示ページに検索フォーム、ユーザー選択フォームを追加する
+
+  6 8 add search from one node to another (?)
+  ノードAからノードBへの検索機能を追加する
+
+  2 4 add search based on edge information (?)
+  エッジの情報を使うように検索機能を改善する
+
+  4 6 implement zoom out/in for network viewer, panning?
+  グラフのズーム機能とパンイング機能を追加する

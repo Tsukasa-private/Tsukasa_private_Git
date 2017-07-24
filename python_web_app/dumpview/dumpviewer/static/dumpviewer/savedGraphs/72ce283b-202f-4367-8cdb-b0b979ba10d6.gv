@@ -1,0 +1,15 @@
+﻿strict digraph "" {
+"合金元素濃度 (id " [creator=6, start=True];
+"Fe-24.9mass%Ni-3.9mass%Mn合金(等温)における母相とマルテンサイト相のギブス自由エネルギー差と温度の関係 (id " [creator=6, type=square];
+"温度 (id " [creator=6, middle=True];
+"自由エネルギー差 (id " [creator=6, end=True];
+"Fe-C系の偏晶反応に及ぼす合金元素の影響 (id " [creator=6, type=square];
+"Fe-C系状態図(破線はFe/黒鉛平衡,実線はFe/Fe<sub>3</sub>C平衡) (id " [creator=6, type=square];
+"炭素濃度 (id " [creator=6];
+"合金元素濃度 (id : 7236)" -> "Fe-C系の偏晶反応に及ぼす合金元素の影響 (id : 420)"  [creator=6];
+"Fe-24.9mass%Ni-3.9mass%Mn合金(等温)における母相とマルテンサイト相のギブス自由エネルギー差と温度の関係 (id : 201)" -> "自由エネルギー差 (id : 6651)"  [creator=6];
+"温度 (id : 6255)" -> "Fe-24.9mass%Ni-3.9mass%Mn合金(等温)における母相とマルテンサイト相のギブス自由エネルギー差と温度の関係 (id : 201)"  [creator=6];
+"Fe-C系の偏晶反応に及ぼす合金元素の影響 (id : 420)" -> "炭素濃度 (id : 7221)"  [creator=6];
+"Fe-C系状態図(破線はFe/黒鉛平衡,実線はFe/Fe<sub>3</sub>C平衡) (id : 411)" -> "温度 (id : 6255)"  [creator=6];
+"炭素濃度 (id : 7221)" -> "Fe-C系状態図(破線はFe/黒鉛平衡,実線はFe/Fe<sub>3</sub>C平衡) (id : 411)"  [creator=6];
+}
