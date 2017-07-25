@@ -18,28 +18,21 @@ plt.show()
 df = pd.DataFrame(samples)
 
 ## ランダムウォーク
-
 def random_process():
     sample_size = 200
     a = 0
-    b = 104         #replicate starting point of SPY shown later
-    rho = 0.995     #empirically good number
+    y = 0
+    disturbance_term = np.random.normal(size=sample_size)
+    
     X, Y = [], []
-
-    aSamples = np.random.normal(size=sample_size)
-    bSamples = np.random.normal(size=sample_size)
-    print(aSamples)
-
     for i in range(0, sample_size):
+        y = a + y + disturbance_term[i]
         X.append(i)
-        Y.append(a + b)
-
-        a = a * rho + aSamples[i]
-        b = b + rho * bSamples[i]
-
+        Y.append(y)
+        
     figsize = (20,8)
     plt.figure(figsize=figsize)
     plt.plot(X, Y, color='r')
     plt.show()
-
+    
 random_process()
